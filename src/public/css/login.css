@@ -1,0 +1,92 @@
+:root {
+  --color-primary: #375dc2;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+.login .login-item {
+  width: 50%;
+}
+.login .login-left {
+  background: var(--color-primary);
+}
+.login .login-right {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.login .login-right .avt {
+  height: 50px;
+  width: 50px;
+}
+.login .login-right .title {
+  font-weight: 400;
+}
+.login .login-right .form {
+  text-align: center;
+  width: 400px;
+  max-width: 100%;
+}
+.login .login-right .form .form-control {
+  position: relative;
+  display: flex;
+  height: 40px;
+  margin: 24px 0;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  background: #f9fafe;
+  transition: all 0.3s;
+}
+.login .login-right .form .form-control:focus-within {
+  border-color: var(--color-primary);
+  transition: all 0.3s;
+}
+.login .login-right .form .form-control .input-label {
+  display: inline-block;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-60%);
+  left: 10px;
+  font-size: 1rem;
+  padding: 0 6px;
+  transition: all 0.3s;
+}
+.login .login-right .form .form-control .input {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  line-height: 38px;
+  background: transparent;
+  padding: 0 12px;
+  caret-color: var(--color-primary);
+}
+.login .login-right .form .form-control .input::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+.login .login-right .form .form-control .input:focus + .input-label {
+  top: -10px;
+  left: 14px;
+  font-size: 0.8rem;
+  transform: unset;
+  transition: all 0.3s;
+}/*# sourceMappingURL=login.css.map */

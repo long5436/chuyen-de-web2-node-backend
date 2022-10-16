@@ -3,6 +3,7 @@ import { WebController as route } from '~/app/controllers';
 
 const router = Router();
 
+router.get('/login', route.login);
 router.get('/', route.index);
 
 export default router;
