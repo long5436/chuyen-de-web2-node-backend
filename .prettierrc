@@ -1,10 +1,18 @@
 {
+  "singleQuote": true,
+  "tabWidth": 2,
   "overrides": [
     {
       "files": "*.hbs",
       "options": {
         "tabWidth": 4,
         "semi": false
+      }
+    },
+    {
+      "files": "*.scss",
+      "options": {
+        "tabWidth": 4
       }
     }
   ]
