@@ -6,7 +6,6 @@
   "scripts": {
     "server": "nodemon --exec babel-node ./src/index.js",
     "scss": "sass --watch --no-source-map src/resources/scss:src/public/css",
-    "hot": "nodemon --exec babel-node ./src/hotReload.js --ext *hbs,css",
     "dev": "concurrently \"npm run server\" \"npm run scss\""
   },
   "dependencies": {
