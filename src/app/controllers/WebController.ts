@@ -1,11 +1,13 @@
+import { Request, Response, NextFunction } from 'express';
+
 class WebController {
-  index(req, res, next) {
+  index(req: Request, res: Response, next: NextFunction) {
     res.render('index', {
       title: 'this is title',
     });
   }
 
-  login(req, res, next) {
+  login(req: Request, res: Response, next: NextFunction) {
     res.render('login', {
       layout: 'bodyOnly',
       style: 'login',

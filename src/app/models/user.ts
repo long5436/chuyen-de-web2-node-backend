@@ -22,6 +22,8 @@ const User = sequelize.define(
 
 console.log(User === sequelize.models.User);
 
+export default new User();
+
 // const data = {
 //   firstName: 'Long',
 //   lastName: 'nguyen',
