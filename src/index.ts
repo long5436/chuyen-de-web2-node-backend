@@ -8,10 +8,11 @@ import { engine } from 'express-handlebars';
 import routes from './routes';
 import './app/config/database';
 
+// load config env
 dotenv.config();
 
-const PORT = process.env.PORT;
-const app = express();
+const PORT: number = !!process.env.PORT ? Number(process.env.PORT) : 3000;
+const app: express.Application = express();
 
 app.use('/assets', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
