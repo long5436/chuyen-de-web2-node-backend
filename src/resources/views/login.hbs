@@ -1,21 +1,25 @@
-<div class="login">
-    <div class="login-item login-left">
+<div class='login'>
+    <div class='login-item login-left'>
 
     </div>
-    <div class="login-item login-right">
-        <div class="avt">
+    <div class='login-item login-right'>
+        <div class='avt border d-flex rounded-circle'>
+            <i class='fa-solid fa-user m-auto'></i>
         </div>
-        <h2 class="title">Admin login</h2>
-        <form action="/login" method="post" class="form">
-            <div class="form-control">
-                <input class="input" type="text" placeholder=""/>
-                <span class="input-label">Usernames</span>
+        <h2 class='title'>Admin login</h2>
+        <form class='form'>
+            <div class='mb-3'>
+                <label for='username' class='form-label'>Username</label>
+                <input type='text' class='form-control' id='username' />
             </div>
-            <div class="form-control">
-                <input class="input" type="text" placeholder="" />
-                <span class="input-label">Password</span>
+            <div class='mb-3'>
+                <label for='password' class='form-label'>Password</label>
+                <input type='password' class='form-control' id='password' />
             </div>
-            <button class="btn-submit">Login</button>
+
+            <div class='text-center'>
+                <button type='submit' class='btn btn-primary px-4'>Login</button>
+            </div>
         </form>
     </div>
 </div>

@@ -35,8 +35,7 @@ class ApiController {
   }
 
   async test2(req: Request, res: Response, next: NextFunction) {
-    const url =
-      'https://prod-public-api.livescore.com/v1/api/app/date/soccer/20221026/7?MD=1';
+    const url = 'https://prod-public-api.livescore.com/v1/api/app/date/soccer/20221026/7?MD=1';
     const data = await axios.get(url);
 
     const result = data.data.Stages.map((item) => {
