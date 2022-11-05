@@ -10,8 +10,14 @@ class WebController {
   login(req: Request, res: Response, next: NextFunction) {
     res.render('login', {
       layout: 'bodyOnly',
-      style: 'login',
+      style: 'auth',
       title: 'Admin login',
+    });
+  }
+
+  country(req: Request, res: Response, next: NextFunction) {
+    res.render('country', {
+      title: 'Conuntries',
     });
   }
 }

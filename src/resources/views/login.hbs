@@ -1,25 +1,62 @@
-<div class='login'>
-    <div class='login-item login-left'>
+<div class="login">
+    <div class="login-item login-left">
 
     </div>
-    <div class='login-item login-right'>
-        <div class='avt border d-flex rounded-circle'>
-            <i class='fa-solid fa-user m-auto'></i>
+    <div class="login-item login-right">
+        {{!-- <div class="avt border d-flex rounded-circle">
+            <i class="fa-solid fa-user m-auto"></i>
         </div>
-        <h2 class='title'>Admin login</h2>
-        <form class='form'>
-            <div class='mb-3'>
-                <label for='username' class='form-label'>Username</label>
-                <input type='text' class='form-control' id='username' />
+        <h2 class="title">Admin login</h2>
+        <form class="form">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" />
             </div>
-            <div class='mb-3'>
-                <label for='password' class='form-label'>Password</label>
-                <input type='password' class='form-control' id='password' />
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" />
             </div>
 
-            <div class='text-center'>
-                <button type='submit' class='btn btn-primary px-4'>Login</button>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary px-4">Login</button>
             </div>
-        </form>
+        </form>  --}}
+
+        <div class="auth-content form">
+            <div class="card">
+                <div class="card-body text-center">
+                    <div class="mb-4">
+                        <img
+                            class="brand"
+                            src="assets/img/bootstraper-logo.png"
+                            alt="bootstraper logo"
+                        />
+                    </div>
+                    <h3 class="mb-4 text-muted">Login to admin</h6>
+                    <form action="" method="">
+                        <div class="mb-3 text-start">
+                            <label for="username" class="form-label">Username</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Enter Username"
+                                required
+                            />
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="password" class="form-label">Password</label>
+                            <input
+                                type="password"
+                                class="form-control"
+                                placeholder="Password"
+                                required
+                            />
+                        </div>
+                        
+                        <button class="btn btn-primary shadow-2 mb-4 px-4">Login</button>
+                    </form>
+                
+            </div>
+        </div>
     </div>
 </div>
