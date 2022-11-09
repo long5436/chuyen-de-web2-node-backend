@@ -13,12 +13,14 @@ const Country = sequelize.define(
     country_name: {
       type: DataTypes.STRING,
     },
+    image_url: {
+      type: DataTypes.STRING,
+    },
   },
   {
     timestamps: true,
     createdAt: true,
     updatedAt: true,
-    force: true,
   }
 );
 

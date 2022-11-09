@@ -15,7 +15,6 @@ class FootballApi {
     try {
       const res: AxiosResponse = await instance.get('/areas');
       return res.data.areas;
-      return [];
     } catch (error) {
       return [];
     }
@@ -25,7 +24,24 @@ class FootballApi {
     try {
       const res: AxiosResponse = await instance.get('/teams');
       return res.data;
+    } catch (error) {
       return [];
+    }
+  }
+
+  async getMatches() {
+    try {
+      const res: AxiosResponse = await instance.get('/matches');
+      return res.data;
+    } catch (error) {
+      return [];
+    }
+  }
+
+  async getMatchesChampionsLeague() {
+    try {
+      const res: AxiosResponse = await instance.get('/competitions/CL/matches');
+      return res.data;
     } catch (error) {
       return [];
     }

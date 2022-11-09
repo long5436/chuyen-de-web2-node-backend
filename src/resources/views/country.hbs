@@ -1,0 +1,58 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+            <div class="content">
+                <div class="head">
+                    <h5 class="mb-0">Countries</h5>
+                    {{! <p class="text-muted">Current year website visitor data</p> }}
+                </div>
+                <div class="canvas-wrapper">
+                    <table class="table table-striped">
+                        <thead class="success">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                {{! <th>Last Name</th> }}
+                                <th class="text-end">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {{#each countries}}
+                                <tr>
+                                    <td>{{id_country}}</td>
+                                    <td>
+                                        <div class="image-box">
+                                            {{#if image_url}}
+                                                <img
+                                                    src="{{image_url}}"
+                                                    class="image"
+                                                    alt="{{country_name}}"
+                                                />
+                                            {{else}}
+                                                <img
+                                                    src="/assets/img/img-err.png"
+                                                    class="image"
+                                                    alt="{{country_name}}"
+                                                />
+                                            {{/if}}
+                                        </div>
+                                        {{country_name}}
+                                    </td>
+                                    <td class="text-end">
+                                        <div>
+                                            <button class="btn btn-secondary btn-sm">Edit</button>
+                                            <button class="btn btn-danger btn-sm">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
