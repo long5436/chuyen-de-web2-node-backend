@@ -1,2 +1,2 @@
 declare module 'compression';
-declare module 'express-minify-html';
+declare module 'express-minify-html-2';

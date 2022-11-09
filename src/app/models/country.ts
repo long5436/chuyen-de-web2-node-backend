@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes, Model } from 'sequelize';
-import sequelize from '../config/database';
+import { db } from '../config/database';
 
-const Country = sequelize.define(
+const Country = db.define(
   'Country',
   {
     id_country: {
