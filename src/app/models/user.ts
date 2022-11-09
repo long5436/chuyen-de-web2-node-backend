@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes, Model } from 'sequelize';
-import sequelize from '../config/database';
+import { db } from '../config/database';
 
-const User = sequelize.define(
+const User = db.define(
   'User',
   {
     firstName: {
@@ -16,11 +16,10 @@ const User = sequelize.define(
     timestamps: true,
     createdAt: true,
     updatedAt: true,
-    force: true,
   }
 );
 
-console.log(User === sequelize.models.User);
+console.log(User === db.models.User);
 
 export default new User();
 

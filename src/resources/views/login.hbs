@@ -1,21 +1,46 @@
 <div class="login">
     <div class="login-item login-left">
-
+        <div class="background">
+            <img src="/assets/img/bg.webp" class="background-image" alt="" />
+        </div>
     </div>
     <div class="login-item login-right">
-        <div class="avt">
+        <div class="auth-content form">
+            <div class="card">
+                <div class="card-body text-center">
+                    <div class="mb-4 text-center">
+                        <div
+                            class="icon-user-box border m-auto rounded-circle d-flex justify-content-center align-items-center"
+                        >
+                            <i class="fa-solid fa-user icon-user"></i>
+                        </div>
+                    </div>
+                    <h3 class="mb-4 text-muted">Login to admin</h3>
+                    <form action="" method="">
+                        <div class="mb-3 text-start">
+                            <label for="username" class="form-label">Username</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Enter Username"
+                                required
+                            />
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="password" class="form-label">Password</label>
+                            <input
+                                type="password"
+                                class="form-control"
+                                placeholder="Password"
+                                required
+                            />
+                        </div>
+
+                        <button class="btn btn-primary shadow-2 mb-4 px-4">Login</button>
+                    </form>
+
+                </div>
+            </div>
         </div>
-        <h2 class="title">Admin login</h2>
-        <form action="/login" method="post" class="form">
-            <div class="form-control">
-                <input class="input" type="text" placeholder=""/>
-                <span class="input-label">Usernames</span>
-            </div>
-            <div class="form-control">
-                <input class="input" type="text" placeholder="" />
-                <span class="input-label">Password</span>
-            </div>
-            <button class="btn-submit">Login</button>
-        </form>
     </div>
 </div>

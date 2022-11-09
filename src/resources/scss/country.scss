@@ -1,0 +1,10 @@
+.image-box {
+    display: inline-block;
+    height: auto;
+    width: 20px;
+    margin-right: 6px;
+    .image {
+        width: inherit;
+        height: inherit;
+    }
+}

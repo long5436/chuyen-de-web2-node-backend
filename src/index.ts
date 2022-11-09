@@ -1,22 +1,24 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import cors from 'cors';
 import bodyParser from 'body-parser';
 import path from 'path';
 import { engine } from 'express-handlebars';
 
 import routes from './routes';
-import './app/config/database';
+import middleware from './app/middlewares';
+import * as db from './app/config/database';
 
 // load config env
 dotenv.config();
+db.connect();
 
 const PORT: number = !!process.env.PORT ? Number(process.env.PORT) : 3000;
 const app: express.Application = express();
 
-app.use('/assets', express.static(path.join(__dirname, 'public')));
+middleware(app);
+
 app.use(bodyParser.json());
-app.use(cors());
+app.use('/assets', express.static(path.join(__dirname, 'public')));
 app.engine('.hbs', engine({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'resources/views'));

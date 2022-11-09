@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes, Model } from 'sequelize';
-import sequelize from '../config/database';
+import { db } from '../config/database';
 
-const Country = sequelize.define(
+const Country = db.define(
   'Country',
   {
     id_country: {
@@ -13,12 +13,14 @@ const Country = sequelize.define(
     country_name: {
       type: DataTypes.STRING,
     },
+    image_url: {
+      type: DataTypes.STRING,
+    },
   },
   {
     timestamps: true,
     createdAt: true,
     updatedAt: true,
-    force: true,
   }
 );
 

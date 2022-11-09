@@ -15,9 +15,15 @@ class countryRepository {
         await Country.create({
           force: true,
           country_name: e.name,
+          image_url: e.flag,
         });
       });
     }
+  }
+  async getCountries() {
+    const data = await Country.findAndCountAll({});
+
+    return data;
   }
 }
 
