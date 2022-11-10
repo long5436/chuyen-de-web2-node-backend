@@ -18,7 +18,12 @@
     {{#if style}}
       <link rel='stylesheet' href='/assets/css/{{ style }}.css' />
     {{/if}}
-    <script defer src="/assets/js/script.js"></script>
+    <script defer src="/assets/js/script.min.js"></script>
+
+    {{#if script}}
+        <script defer src="assets/js/{{script}}.min.css"></script>
+    {{/if}}
+
   </head>
   <body>
       <div class="wrapper">
