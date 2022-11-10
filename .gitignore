@@ -1,3 +1,6 @@
 node_modules
 .env
 src/public/css
+src/public/js
+package-lock.json
+yarn-error.log
