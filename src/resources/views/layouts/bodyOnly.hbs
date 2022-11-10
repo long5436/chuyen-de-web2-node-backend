@@ -25,6 +25,9 @@
             crossorigin="anonymous"
         ></script>
 
+        {{#if script}}
+            <script defer src="assets/js/{{script}}.min.css"></script>
+        {{/if}}
     </head>
     <body>
         {{{body}}}

@@ -1,11 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import bodyParser from 'body-parser';
 import path from 'path';
 import { engine } from 'express-handlebars';
-
-import routes from './routes';
 import middleware from './app/middlewares';
+import routes from './routes';
 import * as db from './app/config/database';
 
 // load config env
@@ -17,7 +15,6 @@ const app: express.Application = express();
 
 middleware(app);
 
-app.use(bodyParser.json());
 app.use('/assets', express.static(path.join(__dirname, 'public')));
 app.engine('.hbs', engine({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
