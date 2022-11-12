@@ -3,8 +3,8 @@ import Country from '~/app/models/country';
 class countryRepository {
   constructor() {}
 
-  async addCountries(data: Array<any>) {
-    console.log(data);
+  async addCountries(data: Array<any>, force?: boolean) {
+    // console.log(data);
 
     await Country.sync({
       force: true,
@@ -12,11 +12,19 @@ class countryRepository {
 
     if (data.length > 0) {
       data.map(async (e) => {
+        // await Country.create({
+        //   force: true,
+        //   country_name: e.name,
+        //   image_url: e.flag,
+        // });
         await Country.create({
-          force: true,
+          // force: true,
+          id_country: e.id,
           country_name: e.name,
-          image_url: e.flag,
+          image_url: e.image_path ? e.image_path : '',
         });
+
+        // console.log(e.name);
       });
     }
   }

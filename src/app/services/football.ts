@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import instance from './instance';
 
 // test fail
@@ -8,13 +8,17 @@ import instance from './instance';
 //   } catch (error) {
 //     return [];
 //   }
-// }
 
 class FootballApi {
   async getCountries() {
     try {
-      const res: AxiosResponse = await instance.get('/areas');
-      return res.data.areas;
+      // const res: AxiosResponse = await instance.get('/areas');
+      // const res: AxiosResponse = await instance.get('/areas');
+      const res: AxiosResponse = await axios.get(
+        'https://soccer.sportmonks.com/api/v2.0/countries?page=2&api_token=JhXRaf7bwMFWetMTl2Qu1CYgyxs6OSGxPPGyAUEAd9GQXUPFU7eZDiG7TxIz'
+      );
+      // return res.data.areas;
+      return res.data.data;
     } catch (error) {
       return [];
     }
