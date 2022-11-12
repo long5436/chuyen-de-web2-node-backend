@@ -2280,6 +2280,11 @@ gzip-size@^5.1.1:
     duplexer "^0.1.1"
     pify "^4.0.1"
 
+handlebars-paginate@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/handlebars-paginate/-/handlebars-paginate-0.1.0.tgz#b8d1440dda315a8ee33167dc30a68526abc40cb6"
+  integrity sha512-bySosgFUoxv6DkuNtGA6f9b/kD5MSpsGXqq2FkO5aA+970EGuM3O8IxV+dZ1/r5JJQCnIUXjAApC4BPFBNSbGQ==
+
 handlebars@^4.7.7:
   version "4.7.7"
   resolved "https://registry.npmjs.org/handlebars/-/handlebars-4.7.7.tgz"

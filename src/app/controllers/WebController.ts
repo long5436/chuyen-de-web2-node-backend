@@ -18,16 +18,18 @@ class WebController {
   }
 
   async country(req: Request, res: Response, next: NextFunction) {
-    const data: any = await CountriesRepository.getCountries();
-
-    const resultData = await Utils.convertDataSequelize(data);
-    // console.log(resultData);
+    const page: number = req.query?.page ? +req.query?.page : 1;
+    const resp: any = await CountriesRepository.getCountries(page);
+    const resultData = await Utils.convertDataSequelize(resp);
+    const pagination = await Utils.pagination(resultData.currentPage, resultData.totalPage);
 
     res.render('country', {
       style: 'country',
       title: 'Conuntries',
-      countries: resultData.rows,
-      countCountries: resultData.count,
+      countries: resultData.data,
+      currentPage: resultData.currentPage,
+      totalPage: resultData.totalPage,
+      pagination: pagination,
     });
   }
 }

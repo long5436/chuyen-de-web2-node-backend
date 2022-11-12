@@ -30,11 +30,3 @@ const Country = db.define(
 );
 
 export default Country;
-
-// (async () => {
-//   //   await Country.sync({ force: true });
-//   await Country.create({
-//     force: true,
-//     countryName: 'test country',
-//   });
-// })();

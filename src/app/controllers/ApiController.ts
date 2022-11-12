@@ -12,7 +12,7 @@ class ApiController {
 
     const totalPage = data.meta.pagination.total_pages;
 
-    if (totalPage < 1) {
+    if (totalPage > 1) {
       for (let i = 2; i <= totalPage; i++) {
         const data: any = await SportmonksApi.getCountries(i);
 
