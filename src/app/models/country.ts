@@ -2,13 +2,18 @@ import { Sequelize, DataTypes, Model } from 'sequelize';
 import { db } from '../config/database';
 
 const Country = db.define(
-  'Country',
+  'country',
   {
-    id_country: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true,
+    },
+    id_country: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      // primaryKey: true,
     },
     country_name: {
       type: DataTypes.STRING,
@@ -25,11 +30,3 @@ const Country = db.define(
 );
 
 export default Country;
-
-// (async () => {
-//   //   await Country.sync({ force: true });
-//   await Country.create({
-//     force: true,
-//     countryName: 'test country',
-//   });
-// })();
