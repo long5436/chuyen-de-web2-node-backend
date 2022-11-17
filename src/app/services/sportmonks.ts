@@ -15,9 +15,21 @@ const params = {
 class SportmonksApi {
   async getCountries(page?: number) {
     try {
-      // const res: AxiosResponse = await instance.get('/areas');
-      // const res: AxiosResponse = await instance.get('/areas');
       const res: AxiosResponse = await instance.get('/countries', {
+        params: { ...params, page: page ? page : 1 },
+      });
+      // return res.data.areas;
+      return res.data;
+    } catch (error) {
+      console.log(error);
+
+      return [];
+    }
+  }
+
+  async getLeagues(page?: number) {
+    try {
+      const res: AxiosResponse = await instance.get('/leagues', {
         params: { ...params, page: page ? page : 1 },
       });
       // return res.data.areas;
