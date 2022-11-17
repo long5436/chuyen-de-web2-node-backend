@@ -50,6 +50,11 @@ class countryRepository {
 
     return resp;
   }
+
+  async getAllCountries() {
+    const data = await Country.findAndCountAll();
+    return data;
+  }
 }
 
 export default new countryRepository();

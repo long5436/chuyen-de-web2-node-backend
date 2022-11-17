@@ -1,0 +1,70 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+            <div class="content">
+                <div class="head">
+                    <h5 class="mb-0">{{title}}</h5>
+                    {{! <p class="text-muted">Current year website visitor data</p> }}
+                </div>
+
+                {{!  }}
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <table width="100%" class="table table-hover" id="dataTables-example">
+                            <thead class="success">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>ID country</th>
+                                    <th>Name</th>
+                                    {{! <th>Last Name</th> }}
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                {{#each data}}
+                                    <tr>
+                                        <td>{{id}}</td>
+                                        <td>{{id_leagues}}</td>
+                                        <td>
+                                            <div class="image-box">
+                                                {{#if image_url}}
+                                                    <img
+                                                        src="{{image_url}}"
+                                                        class="image"
+                                                        alt="{{leagues_name}}"
+                                                    />
+                                                {{else}}
+                                                    <img
+                                                        src="/assets/img/img-err.png"
+                                                        class="image"
+                                                        alt="{{leagues_name}}"
+                                                    />
+                                                {{/if}}
+                                            </div>
+                                            {{country_name}}
+                                        </td>
+                                        <td class="text-end">
+                                            <a href="" class="btn btn-outline-info btn-rounded"><i
+                                                    class="fas fa-pen"
+                                                ></i></a>
+                                            <a href="" class="btn btn-outline-danger btn-rounded"><i
+                                                    class="fas fa-trash"
+                                                ></i></a>
+                                        </td>
+                                    </tr>
+                                {{/each}}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    {{{pagination}}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
