@@ -27,6 +27,7 @@ class WebController {
     res.render('country', {
       style: 'country',
       title: 'Conuntries',
+      script: 'country',
       countries: resultData.data,
       currentPage: resultData.currentPage,
       totalPage: resultData.totalPage,
