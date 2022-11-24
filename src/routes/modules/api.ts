@@ -8,6 +8,6 @@ router.get('/v1/leagues', route.leagues);
 // router.get('/test2', route.test2);
 
 router.get('/all/countries', route.getAllCountries);
-router.get('/matches');
+router.get('/matches/today', route.matchToday);
 
 export default router;

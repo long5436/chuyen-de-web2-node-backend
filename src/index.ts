@@ -25,3 +25,5 @@ routes(app);
 app.listen(PORT, () => {
   console.log('Server running on http://localhost:' + PORT);
 });
+
+import './app/services/crawl';
