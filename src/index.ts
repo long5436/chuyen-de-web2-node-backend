@@ -13,6 +13,8 @@ db.connect();
 const PORT: number = !!process.env.PORT ? Number(process.env.PORT) : 3000;
 const app: express.Application = express();
 
+global.__basedir = __dirname;
+
 middleware(app);
 
 app.use('/assets', express.static(path.join(__dirname, 'public')));
