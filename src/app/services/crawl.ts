@@ -26,6 +26,19 @@ class CrawlApi {
 
     return data.data;
   }
+
+  async getDetail(id: string) {
+    try {
+      const data = await instance.get(`/app/match-x/soccer/${id}/7`, {
+        params: {
+          MD: 1,
+        },
+      });
+      return data.data;
+    } catch (error) {
+      return [];
+    }
+  }
 }
 
 export default new CrawlApi();

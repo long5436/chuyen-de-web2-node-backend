@@ -2,5 +2,6 @@ node_modules
 .env
 src/public/css
 src/public/js
+src/public/other-image
 package-lock.json
 yarn-error.log
