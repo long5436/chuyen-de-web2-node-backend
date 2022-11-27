@@ -103,7 +103,7 @@ class Utils {
     return check;
   }
 
-  saveFile(url: string) {
+  async saveFile(url: string) {
     if (!fs.existsSync(path.join(global.__basedir, 'public/other-image'))) {
       fs.mkdirSync(path.join(global.__basedir, 'public/other-image'));
     }
@@ -113,16 +113,34 @@ class Utils {
       dest: path.join(global.__basedir, 'public/other-image'),
     };
 
-    download
-      .image(options)
-      .then(({ filename }) => {
-        console.log('Saved image to', filename); // saved to /path/to/dest/image.jpg
-      })
-      .catch((err) => {
-        // console.log(url);
-        // console.error(err);
-        console.log('Error => ' + err);
-      });
+    try {
+      const result = await download.image(options);
+      console.log('Saved image to', result);
+    } catch (error) {
+      console.log('Error => ' + error);
+    }
+  }
+
+  async saveAllFile(listUrl: string[]) {
+    if (!fs.existsSync(path.join(global.__basedir, 'public/other-image'))) {
+      fs.mkdirSync(path.join(global.__basedir, 'public/other-image'));
+    }
+
+    const listPromise = listUrl.map(async (url: string) => {
+      const options = {
+        url,
+        dest: path.join(global.__basedir, 'public/other-image'),
+      };
+
+      try {
+        const result = await download.image(options);
+        console.log('Saved image to', result);
+      } catch (error) {
+        console.log('Error => ' + error);
+      }
+    });
+
+    await Promise.all(listPromise);
   }
 
   handleImageDownload(fileName: string, url: string) {
