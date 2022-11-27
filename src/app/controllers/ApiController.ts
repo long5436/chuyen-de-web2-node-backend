@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import axios, { AxiosResponse } from 'axios';
 import { CountriesRepository, LeaguesRepository } from '~/app/repositories';
-import { SportmonksApi, FootballApi, CrawlApi } from '~/app/services';
+import { SportmonksApi, CrawlApi } from '~/app/services';
 import Utils from '~/app/utils';
 
 class ApiController {
@@ -129,6 +129,10 @@ class ApiController {
         id: data.Eid,
         matchName: Stg.Snm,
         leagueName: Stg.Cnm,
+        image: Utils.handleImageDownload(
+          Stg.Ccd + '.jpg',
+          'https://lsm-static-prod.livescore.com/high/' + Stg.Ccd + '.jpg'
+        ),
         detail: {
           time: Esd,
           minute: Eps,
