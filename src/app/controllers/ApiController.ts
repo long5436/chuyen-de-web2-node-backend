@@ -1,8 +1,29 @@
 import { Request, Response, NextFunction } from 'express';
+import dotenv from 'dotenv';
 import axios, { AxiosResponse } from 'axios';
 import { CountriesRepository, LeaguesRepository } from '~/app/repositories';
 import { SportmonksApi, CrawlApi } from '~/app/services';
 import Utils from '~/app/utils';
+import utils from '~/app/utils';
+
+let imageUrls: string[] = [];
+dotenv.config();
+const serverUrl: string = process.env.SERVER_URL || '';
+
+function getImageUrl(fileName: string, url: string): string {
+  const splitFileName: string[] = fileName?.split('/');
+  let result: string = '';
+  let resultFileName: string = '';
+  if (splitFileName) {
+    resultFileName = splitFileName.length > 1 ? splitFileName[1] : splitFileName[0];
+    result = `${serverUrl}/assets/other-image/${resultFileName}`;
+    if (!Utils.checkFileExit(resultFileName)) {
+      imageUrls.push(url);
+    }
+  }
+
+  return result;
+}
 
 class ApiController {
   async countries(req: Request, res: Response, next: NextFunction) {
@@ -55,13 +76,14 @@ class ApiController {
 
   async matchToday(req: Request, res: Response, next: NextFunction) {
     const data = await CrawlApi.getMatches();
+    imageUrls = [];
 
     if (data.hasOwnProperty('Stages')) {
       const resultData = data.Stages.map((e: any) => {
         return {
           leagueName: e.Snm,
           countryName: e.Cnm,
-          image: Utils.handleImageDownload(
+          image: getImageUrl(
             e.Ccd + '.jpg',
             'https://static.livescore.com/i2/fh/' + e.Ccd + '.jpg'
           ),
@@ -74,7 +96,7 @@ class ApiController {
               type: e1.Media,
               homeTeam: {
                 name: e1.T1[0].Nm,
-                image: Utils.handleImageDownload(
+                image: getImageUrl(
                   e1.T1[0].Img,
                   'https://lsm-static-prod.livescore.com/medium/' + e1.T1[0].Img
                 ),
@@ -82,7 +104,7 @@ class ApiController {
               },
               awayTeam: {
                 name: e1.T2[0].Nm,
-                image: Utils.handleImageDownload(
+                image: getImageUrl(
                   e1.T2[0].Img,
                   'https://lsm-static-prod.livescore.com/medium/' + e1.T2[0].Img
                 ),
@@ -93,6 +115,11 @@ class ApiController {
         };
       });
 
+      // console.log(imageUrls);
+
+      await utils.saveAllFile(imageUrls);
+      console.log('da xong');
+
       res.send({ message: 'OK', data: resultData });
     } else {
       res.send({ message: 'ERROR', data: [] });
@@ -101,6 +128,7 @@ class ApiController {
 
   async detail(req: Request, res: Response, next: NextFunction) {
     const id: string = req.params?.id ? req.params?.id : '';
+    imageUrls = [];
 
     const data = await CrawlApi.getDetail(id);
     if (data?.Eid) {
@@ -129,7 +157,7 @@ class ApiController {
         id: data.Eid,
         matchName: Stg.Snm,
         leagueName: Stg.Cnm,
-        image: Utils.handleImageDownload(
+        image: getImageUrl(
           Stg.Ccd + '.jpg',
           'https://lsm-static-prod.livescore.com/high/' + Stg.Ccd + '.jpg'
         ),
@@ -138,7 +166,7 @@ class ApiController {
           minute: Eps,
           homeTeam: {
             name: T1[0].Nm,
-            image: Utils.handleImageDownload(
+            image: getImageUrl(
               T1[0].Img,
               'https://lsm-static-prod.livescore.com/high/' + T1[0].Img
             ),
@@ -146,7 +174,7 @@ class ApiController {
           },
           awayTeam: {
             name: T2[0].Nm,
-            image: Utils.handleImageDownload(
+            image: getImageUrl(
               T2[0].Img,
               'https://lsm-static-prod.livescore.com/high/' + T2[0].Img
             ),
@@ -162,7 +190,7 @@ class ApiController {
             minute: Eps,
             homeTeam: {
               name: T1[0].Nm,
-              image: Utils.handleImageDownload(
+              image: getImageUrl(
                 T1[0].Img,
                 'https://lsm-static-prod.livescore.com/medium/' + T1[0].Img
               ),
@@ -170,7 +198,7 @@ class ApiController {
             },
             awayTeam: {
               name: T2[0].Nm,
-              image: Utils.handleImageDownload(
+              image: getImageUrl(
                 T2[0].Img,
                 'https://lsm-static-prod.livescore.com/medium/' + T2[0].Img
               ),
@@ -188,10 +216,7 @@ class ApiController {
                 return {
                   ranking: rnk,
                   name: Tnm,
-                  image: Utils.handleImageDownload(
-                    Img,
-                    'https://lsm-static-prod.livescore.com/medium/' + Img
-                  ),
+                  image: getImageUrl(Img, 'https://lsm-static-prod.livescore.com/medium/' + Img),
                   player: pld,
                   win: win,
                   draw: drw,
@@ -217,6 +242,8 @@ class ApiController {
           };
         }),
       };
+      await utils.saveAllFile(imageUrls);
+      console.log('da xong');
       res.send({ message: 'OK', data: resultData });
     } else {
       res.send({ message: 'ERROR', data: [] });
