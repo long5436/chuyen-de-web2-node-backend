@@ -139,7 +139,7 @@ class ApiController {
       if (Incs) {
         const IncCenter = {
           Min: 'HT',
-          Sc: [Trh1 ? Trh1 : '', Trh2 ? Tr2 : ''],
+          Sc: [Trh1 ? Trh1 : '', Trh2 ? Trh2 : ''],
         };
 
         const IncEnd = {
@@ -231,7 +231,9 @@ class ApiController {
           });
         }),
         summary: arrIncs?.map((a: any) => {
-          const { Min, Tnm, Img, Sc, Nm, MinEx } = a;
+          const { Min, Tnm, Img, Sc, Nm, MinEx, Pn, Incs } = a;
+          // console.log({ a });
+
           return {
             minute: Min,
             minuteEx: MinEx,
@@ -239,6 +241,13 @@ class ApiController {
             // image: Img,
             score: Sc,
             nowValue: Nm,
+            player: Pn,
+            players: Incs
+              ? {
+                  player1: Incs[0].Pn,
+                  player2: Incs[1].Pn,
+                }
+              : null,
           };
         }),
       };
