@@ -9,8 +9,12 @@ import utils from '~/app/utils';
 let imageUrls: string[] = [];
 dotenv.config();
 const serverUrl: string = process.env.SERVER_URL || '';
+const errName: string[] = ['undefined.jpg', 'undefined.png', 'undefined'];
 
 function getImageUrl(fileName: string, url: string): string {
+  // kiem tra neu hinh anh khong co hoac bi loi thi bo qua cai nay
+  if (errName.includes(fileName)) return '';
+
   const splitFileName: string[] = fileName?.split('/');
   let result: string = '';
   let resultFileName: string = '';
@@ -139,7 +143,7 @@ class ApiController {
       if (Incs) {
         const IncCenter = {
           Min: 'HT',
-          Sc: [Trh1 ? Trh1 : '', Trh2 ? Tr2 : ''],
+          Sc: [Trh1 ? Trh1 : '', Trh2 ? Trh2 : ''],
         };
 
         const IncEnd = {
@@ -188,6 +192,10 @@ class ApiController {
             leagueName: Stg.Cnm,
             time: Esd,
             minute: Eps,
+            image: getImageUrl(
+              Stg.Ccd + '.jpg',
+              'https://static.livescore.com/i2/fh/' + Stg.Ccd + '.jpg'
+            ),
             homeTeam: {
               name: T1[0].Nm,
               image: getImageUrl(
@@ -207,31 +215,31 @@ class ApiController {
           };
         }),
         table: LgT?.map((lgt: any) => {
-          lgt?.Tables?.map((t: any) => {
+          return lgt.Tables?.map((t: any) => {
             const { team } = t;
-            return {
-              name: t.name,
-              team: team.map((t1: any) => {
-                const { rnk, Tnm, Img, pld, win, drw, lst, gf, ga, gd, pts } = t1;
-                return {
-                  ranking: rnk,
-                  name: Tnm,
-                  image: getImageUrl(Img, 'https://lsm-static-prod.livescore.com/medium/' + Img),
-                  player: pld,
-                  win: win,
-                  draw: drw,
-                  losses: lst,
-                  goalsFor: gf,
-                  goalsAgainst: ga,
-                  goalsDifference: gd,
-                  points: pts,
-                };
-              }),
-            };
+
+            return team.map((t1: any) => {
+              const { rnk, Tnm, Img, pld, win, drw, lst, gf, ga, gd, pts } = t1;
+              return {
+                ranking: rnk,
+                name: Tnm,
+                image: getImageUrl(Img, 'https://lsm-static-prod.livescore.com/medium/' + Img),
+                player: pld,
+                win: win,
+                draw: drw,
+                losses: lst,
+                goalsFor: gf,
+                goalsAgainst: ga,
+                goalsDifference: gd,
+                points: pts,
+              };
+            });
           });
         }),
         summary: arrIncs?.map((a: any) => {
-          const { Min, Tnm, Img, Sc, Nm, MinEx } = a;
+          const { Min, Tnm, Img, Sc, Nm, MinEx, Pn, Incs } = a;
+          // console.log({ a });
+
           return {
             minute: Min,
             minuteEx: MinEx,
@@ -239,6 +247,13 @@ class ApiController {
             // image: Img,
             score: Sc,
             nowValue: Nm,
+            player: Pn,
+            players: Incs
+              ? {
+                  player1: Incs[0].Pn,
+                  player2: Incs[1].Pn,
+                }
+              : null,
           };
         }),
       };
