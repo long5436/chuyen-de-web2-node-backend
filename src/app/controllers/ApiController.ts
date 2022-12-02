@@ -9,8 +9,12 @@ import utils from '~/app/utils';
 let imageUrls: string[] = [];
 dotenv.config();
 const serverUrl: string = process.env.SERVER_URL || '';
+const errName: string[] = ['undefined.jpg', 'undefined.png', 'undefined'];
 
 function getImageUrl(fileName: string, url: string): string {
+  // kiem tra neu hinh anh khong co hoac bi loi thi bo qua cai nay
+  if (errName.includes(fileName)) return '';
+
   const splitFileName: string[] = fileName?.split('/');
   let result: string = '';
   let resultFileName: string = '';
@@ -188,6 +192,10 @@ class ApiController {
             leagueName: Stg.Cnm,
             time: Esd,
             minute: Eps,
+            image: getImageUrl(
+              Stg.Ccd + '.jpg',
+              'https://static.livescore.com/i2/fh/' + Stg.Ccd + '.jpg'
+            ),
             homeTeam: {
               name: T1[0].Nm,
               image: getImageUrl(
@@ -207,27 +215,25 @@ class ApiController {
           };
         }),
         table: LgT?.map((lgt: any) => {
-          lgt?.Tables?.map((t: any) => {
+          return lgt.Tables?.map((t: any) => {
             const { team } = t;
-            return {
-              name: t.name,
-              team: team.map((t1: any) => {
-                const { rnk, Tnm, Img, pld, win, drw, lst, gf, ga, gd, pts } = t1;
-                return {
-                  ranking: rnk,
-                  name: Tnm,
-                  image: getImageUrl(Img, 'https://lsm-static-prod.livescore.com/medium/' + Img),
-                  player: pld,
-                  win: win,
-                  draw: drw,
-                  losses: lst,
-                  goalsFor: gf,
-                  goalsAgainst: ga,
-                  goalsDifference: gd,
-                  points: pts,
-                };
-              }),
-            };
+
+            return team.map((t1: any) => {
+              const { rnk, Tnm, Img, pld, win, drw, lst, gf, ga, gd, pts } = t1;
+              return {
+                ranking: rnk,
+                name: Tnm,
+                image: getImageUrl(Img, 'https://lsm-static-prod.livescore.com/medium/' + Img),
+                player: pld,
+                win: win,
+                draw: drw,
+                losses: lst,
+                goalsFor: gf,
+                goalsAgainst: ga,
+                goalsDifference: gd,
+                points: pts,
+              };
+            });
           });
         }),
         summary: arrIncs?.map((a: any) => {
