@@ -40,6 +40,48 @@ class SportmonksApi {
       return [];
     }
   }
+  async getSeason() {
+    try {
+      const res: AxiosResponse = await instance.get('/seasons', {
+        params: { ...params },
+      });
+      // return res.data.areas;
+
+      return res.data;
+    } catch (error) {
+      console.log(error);
+
+      return [];
+    }
+  }
+  async getTopscore(page?: number) {
+    try {
+      const res: AxiosResponse = await instance.get('/topscorers/season/17141', {
+        params: { ...params, page: page ? page : 1 },
+      });
+      // return res.data.areas;
+
+      return res.data.data;
+    } catch (error) {
+      console.log(error);
+
+      return [];
+    }
+  }
+  async getPlayer(page?: number) {
+    try {
+      const res: AxiosResponse = await instance.get('/players', {
+        params: { ...params, page: page ? page : 1 },
+      });
+      // return res.data.areas;
+
+      return res.data;
+    } catch (error) {
+      console.log(error);
+
+      return [];
+    }
+  }
 }
 
 export default new SportmonksApi();

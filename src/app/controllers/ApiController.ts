@@ -264,6 +264,23 @@ class ApiController {
       res.send({ message: 'ERROR', data: [] });
     }
   }
+  async season(req: Request, res: Response, next: NextFunction) {
+    const data: any = await SportmonksApi.getSeason();
+    res.send(data);
+    // res.send('oo');
+  }
+  async topscore(req: Request, res: Response, next: NextFunction) {
+    const data: any = await SportmonksApi.getTopscore();
+    const goalscorers = {};
+
+    // res.send('oo');
+  }
+  async player(req: Request, res: Response, next: NextFunction) {
+    const data: any = await SportmonksApi.getPlayer();
+
+    //res.send(data);
+    res.send('oo');
+  }
 }
 
 export default new ApiController();
