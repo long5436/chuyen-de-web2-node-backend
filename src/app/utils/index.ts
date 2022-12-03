@@ -11,6 +11,7 @@ type Data = {
 
 dotenv.config();
 const serverUrl: string = process.env.SERVER_URL || '';
+const keywords: string[] = ['world', 'league', 'euro', 'championship', 'cup', 'olympics'];
 
 class Utils {
   convertDataSequelize(data: Data) {
@@ -154,6 +155,32 @@ class Utils {
 
     if (!this.checkFileExit(resultFileName)) {
       this.saveFile(url);
+    }
+
+    return result;
+  }
+
+  checkIsCountry(value: string): boolean {
+    const rs = keywords.filter((item: string) => value.toLowerCase().includes(item));
+    if (rs.length > 0) return false;
+    else return true;
+  }
+
+  getImageUrl(fileName: string, url: string, imageUrls: string[]): string {
+    const serverUrl: string = process.env.SERVER_URL || '';
+    const errName: string[] = ['undefined.jpg', 'undefined.png', 'undefined'];
+    // kiem tra neu hinh anh khong co hoac bi loi thi bo qua cai nay
+    if (errName.includes(fileName)) return '';
+
+    const splitFileName: string[] = fileName?.split('/');
+    let result: string = '';
+    let resultFileName: string = '';
+    if (splitFileName) {
+      resultFileName = splitFileName.length > 1 ? splitFileName[1] : splitFileName[0];
+      result = `${serverUrl}/assets/other-image/${resultFileName}`;
+      if (!this.checkFileExit(resultFileName)) {
+        imageUrls.push(url);
+      }
     }
 
     return result;

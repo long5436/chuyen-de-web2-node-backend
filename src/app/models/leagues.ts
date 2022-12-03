@@ -10,28 +10,18 @@ const Leagues = db.define(
       allowNull: false,
       autoIncrement: true,
     },
-    id_leagues: {
-      type: DataTypes.INTEGER,
+    name: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
-    id_country: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    leagues_name: {
+    slug: {
       type: DataTypes.STRING,
     },
-    image_url: {
+    country_slug: {
       type: DataTypes.STRING,
     },
-    current_season_id: {
-      type: DataTypes.INTEGER,
-    },
-    current_round_id: {
-      type: DataTypes.INTEGER,
-    },
-    current_stage_id: {
-      type: DataTypes.INTEGER,
+    image: {
+      type: DataTypes.STRING,
     },
   },
   {

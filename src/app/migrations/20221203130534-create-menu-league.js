@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('leagues', {
+    await queryInterface.createTable('menu-leagues', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -11,15 +11,11 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
-      country_slug: {
+      image: {
         type: Sequelize.STRING,
       },
       slug: {
-        type: Sequelize.STRING,
-      },
-      image: {
         type: Sequelize.STRING,
       },
       createdAt: {
@@ -31,6 +27,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('leagues');
+    await queryInterface.dropTable('menu-leagues');
   },
 };
