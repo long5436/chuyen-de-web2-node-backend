@@ -18,22 +18,19 @@ class LeaguesRepository {
 
     if (data.length > 0) {
       data.map(async (e) => {
+        const { name, country_slug, slug, image } = e;
+
         await Leagues.create({
-          // force: true,
-          id_leagues: e.id,
-          id_country: e.country_id,
-          leagues_name: e.name,
-          image_url: e.logo_path,
-          current_season_id: e.current_season_id,
-          current_round_id: e.current_round_id,
-          current_stage_id: e.current_stage_id,
+          name,
+          country_slug,
+          slug,
+          image,
         });
       });
     }
   }
-  async getLeagues(page: number) {
-    console.log((page - 1) * 20);
 
+  async getLeagues(page: number) {
     const data = await Leagues.findAndCountAll({
       offset: (page - 1) * 20,
       limit: 20,
@@ -46,6 +43,11 @@ class LeaguesRepository {
     };
 
     return resp;
+  }
+
+  async getLeague(slug: string) {
+    const data = await Leagues.findAndCountAll({ where: { country_slug: slug } });
+    return data;
   }
 }
 

@@ -1,4 +1,4 @@
-import Country from '~/app/models/country';
+import MenuLeague from '~/app/models/menuLeague';
 
 type DataResponse = {
   data: Array<Object>;
@@ -6,19 +6,19 @@ type DataResponse = {
   currentPage: number;
 };
 
-class countryRepository {
+class MenuLeagueRepository {
   constructor() {}
 
-  async addCountries(data: Array<any>, force?: boolean) {
+  async addMenuLeague(data: Array<any>, force?: boolean) {
     // console.log(data);
 
-    await Country.sync({
+    await MenuLeague.sync({
       // force: true,
     });
 
     if (data.length > 0) {
       data.map(async (e) => {
-        await Country.create({
+        await MenuLeague.create({
           name: e.name,
           image: e.image ? e.image : '',
           slug: e.slug,
@@ -26,10 +26,10 @@ class countryRepository {
       });
     }
   }
-  async getCountries(page: number) {
+  async getMenuLeague(page: number) {
     console.log((page - 1) * 20);
 
-    const data = await Country.findAndCountAll({
+    const data = await MenuLeague.findAndCountAll({
       offset: (page - 1) * 20,
       limit: 20,
     });
@@ -43,10 +43,10 @@ class countryRepository {
     return resp;
   }
 
-  async getAllCountries() {
-    const data = await Country.findAndCountAll();
+  async getAllMenuLeague() {
+    const data = await MenuLeague.findAndCountAll();
     return data;
   }
 }
 
-export default new countryRepository();
+export default new MenuLeagueRepository();

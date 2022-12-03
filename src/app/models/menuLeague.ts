@@ -2,7 +2,7 @@ import { Sequelize, DataTypes, Model } from 'sequelize';
 import { db } from '../config/database';
 
 const Country = db.define(
-  'country',
+  'menu-league',
   {
     id: {
       type: DataTypes.INTEGER,

@@ -9,15 +9,13 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
       },
-      id_country: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        // primaryKey: true,
-      },
-      country_name: {
+      name: {
         type: Sequelize.STRING,
       },
-      image_url: {
+      image: {
+        type: Sequelize.STRING,
+      },
+      slug: {
         type: Sequelize.STRING,
       },
       createdAt: {
