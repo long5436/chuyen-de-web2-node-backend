@@ -40,6 +40,50 @@ class SportmonksApi {
       return [];
     }
   }
+
+  async getTopscore(season: string, page?: number) {
+    try {
+      const res: AxiosResponse = await instance.get('/topscorers/season/' + season, {
+        params: { ...params, page: page ? page : 1 },
+      });
+      // return res.data.areas;
+
+      return res.data.data;
+    } catch (error) {
+      console.log(error);
+
+      return [];
+    }
+  }
+
+  async getPlayer(id: string) {
+    try {
+      const res: AxiosResponse = await instance.get('/players/' + id, {
+        params: { ...params },
+      });
+      // return res.data.areas;
+
+      return res.data.data;
+    } catch (error) {
+      console.log(error);
+
+      return [];
+    }
+  }
+  async getTeam(id: number) {
+    try {
+      const res: AxiosResponse = await instance.get('/teams/' + id, {
+        params: { ...params },
+      });
+      // return res.data.areas;
+
+      return res.data.data;
+    } catch (error) {
+      console.log(error);
+
+      return [];
+    }
+  }
 }
 
 export default new SportmonksApi();
